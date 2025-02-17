@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="th">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seasons flower</title>
+        <!-- การกำหนดไอคอน favicon -->
+        <link rel="icon" type="image/png" href="https://i.postimg.cc/18qwFcX3/image.png">
+        <style>
+        body, html {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #FFEFEF, #FFF5E1, #FAF3E0);
+            color: #5A3E36;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .content {
+            text-align: center;
+            padding: 30px;
+            color: #5A3E36;
+            border-radius: 30px;
+            max-width: 80%;
+            width: 600px;
+            position: relative;
+            z-index: 2;
+            transform: scale(1);
+            animation: contentPop 0.7s ease-out forwards;
+            transition: transform 0.3s ease;
+        }
+
+        @keyframes contentPop {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .content:hover {
+            transform: translateY(-10px);
+        }
+
+        .content h2 {
+            font-size: 2.5em;
+            color: #D2691E;
+            margin-bottom: 20px;
+            text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .content p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        .content img.content-image {
+            max-width: 50%;
+            height: auto;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.2));
+        }
+
+        .content .button {
+            display: inline-block;
+            background-color: #FFAB91;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 40px;
+            transition: background-color 0.4s, transform 0.3s, box-shadow 0.4s ease-in-out;
+            box-shadow: 0 6px 25px rgba(255, 140, 101, 0.25);
+        }
+
+        .content .button:hover {
+            background-color: #FF8A65;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(255, 140, 101, 0.4);
+        }
+
+        /* เอฟเฟกต์ดอกไม้และหัวใจตก */
+        .falling-element {
+            position: fixed;
+            top: -50px;
+            animation: fall linear infinite;
+            z-index: 1;
+            opacity: 0.8;
+            filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.15));
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* ข้อความลิขสิทธิ์ที่มุมขวาล่าง */
+        .copyright {
+            position: fixed;  /* ใช้ fixed เพื่อให้ข้อความอยู่คงที่ */
+            bottom: 10px;
+            right: 10px;
+            font-size: 1em;
+            color: #5A3E36;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <img src="https://cdn.discordapp.com/attachments/1341116521581379666/1341148312530583562/5bc5aceafcfff55e.png?ex=67b4f133&is=67b39fb3&hm=3809978f1eb8458e10b69eb05b377a1bf8426c9bd4be135ab3bcb6549a480d2d&" alt="Image description" class="content-image">
+            <h2>Feel the love in every season!</h2>
+            <p>Coming soon.</p>
+            <a href="#more" class="button">ไปกันนน</a>
+        </div>
+
+        <div class="copyright">
+            © 2025 Seasonsflower.luv. All rights reserved.
+        </div>
+
+        <script>
+            const images = [
+                'https://media.discordapp.net/attachments/1341116521581379666/1341116558654832733/SmallWhiteFlower.gif?ex=67b4d3a0&is=67b38220&hm=69c01739b67baee28b09c3edba05663706a967e3692b98423b30918d91b146d5&=&width=160&height=160',
+                'https://media.discordapp.net/attachments/1341116521581379666/1341116559304953896/white_flower.png?ex=67b4d3a0&is=67b38220&hm=93a01907875691edee4524714f9a837dff9abfe75996551e19c0fe53977ff39b&=&format=webp&quality=lossless&width=547&height=547',
+                'https://media.discordapp.net/attachments/1341116521581379666/1341117194888679434/blue_heart.png?ex=67b4d438&is=67b382b8&hm=0e4618b0daf29b1970907aaa328f06b97b33b95a2186863d7ec40defb090d96e&=&format=webp&quality=lossless&width=547&height=547',
+                'https://media.discordapp.net/attachments/1341116521581379666/1341117195178213422/love.gif?ex=67b4d438&is=67b382b8&hm=adbf6cbabeaf3f960d1c8dcca7abb39f209d0e7289e73f29abf630da15d440d6&=&width=120&height=120',
+            ];
+
+            const container = document.body;
+
+            function createFallingElement() {
+                const element = document.createElement('img');
+                element.classList.add('falling-element');
+
+                const randomImage = images[Math.floor(Math.random() * images.length)];
+                element.src = randomImage;
+
+                const size = Math.floor(Math.random() * 50) + 30;
+                element.style.width = `${size}px`;
+                element.style.height = 'auto';
+
+                const startPosition = Math.random() * window.innerWidth;
+                element.style.left = `${startPosition}px`;
+
+                const duration = Math.random() * 5 + 3;
+                element.style.animationDuration = `${duration}s`;
+
+                const rotation = Math.random() * 360;
+                element.style.transform = `rotate(${rotation}deg)`;
+
+                container.appendChild(element);
+
+                setTimeout(() => {
+                    element.remove();
+                }, duration * 1000);
+            }
+
+            setInterval(createFallingElement, 300);
+        </script>
+    </body>
+</html>
