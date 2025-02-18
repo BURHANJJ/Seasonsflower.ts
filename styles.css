@@ -1,0 +1,157 @@
+body, html {
+    font-family: 'Kanit', 'Noto Sans Thai', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #FFEFEF, #FFF5E1, #FAF3E0);
+    color: #5A3E36;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100vw; /* ใช้ความกว้างเต็มหน้าจอ */
+    overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
+}
+
+.content {
+    text-align: center;
+    padding: 30px;
+    color: #5A3E36;
+    border-radius: 30px;
+    width: 80vw; /* เพิ่มความกว้างของกล่อง */
+    max-width: 900px; /* กำหนดขนาดสูงสุดให้ไม่กว้างเกินไป */
+    position: relative;
+    z-index: 2;
+    transform: scale(1);
+    animation: contentPop 0.7s ease-out forwards;
+    transition: transform 0.3s ease;
+}
+
+@keyframes contentPop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.content:hover {
+    transform: translateY(-10px);
+}
+
+.content h2 {
+    font-size: 2.0em;
+    color: #D2691E;
+    margin-bottom: 20px;
+    text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.content p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+
+.content img.content-image {
+    max-width: 40%;
+    height: auto;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.2));
+}
+
+.content .button {
+    display: inline-block;
+    background-color: #FFAB91;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: background-color 0.4s, transform 0.3s, box-shadow 0.4s ease-in-out;
+    box-shadow: 0 6px 25px rgba(255, 140, 101, 0.25);
+}
+
+.content .button:hover {
+    background-color: #FF8A65;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(255, 140, 101, 0.4);
+}
+
+/* เอฟเฟกต์ดอกไม้และหัวใจตก */
+.falling-element {
+    position: fixed;
+    top: -50px;
+    animation: fall linear infinite;
+    z-index: 1;
+    opacity: 0.8;
+    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.15));
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* ข้อความลิขสิทธิ์ที่มุมขวาล่าง */
+.copyright {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 1em;
+    color: #5A3E36;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 404 */
+body {
+    font-family: 'Kanit', 'Noto Sans Thai', sans-serif;
+    text-align: center;
+    background: linear-gradient(45deg, #FFEFEF, #FFF5E1, #FAF3E0);
+    color: #5A3E36;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 5em;
+    color: #D2691E;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #FFAB91;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #FF8A65;
+    transform: translateY(-5px);
+}
