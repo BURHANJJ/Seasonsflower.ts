@@ -82,29 +82,65 @@ body, html {
     box-shadow: 0 12px 30px rgba(255, 140, 101, 0.4);
 }
 
-/* ปรับขนาดรูปภาพให้เหมาะสมกับมือถือ */
-.content img.content-image {
-    max-width: 45%;  /* ให้รูปภาพเต็มพื้นที่ของ content */
-    height: auto;
-}
-
-/* ทำให้ content ไม่ใหญ่เกินไปและแสดงสวยในมือถือ */
+/* ปรับขนาดรูปภาพและเนื้อหาเมื่อเปิดในมือถือ */
 @media (max-width: 768px) {
     .content {
-        max-width: 90%;  /* ปรับความกว้างของกล่อง content ให้พอดี */
-        padding: 20px;  /* ลด padding ลงให้สมดุล */
+        width: 95%; /* ใช้พื้นที่เต็มที่แต่ไม่ติดขอบ */
+        padding: 15px;
     }
 
     .content h2 {
-        font-size: 2em;  /* ลดขนาดหัวข้อ */
+        font-size: 1.8em; /* ลดขนาดหัวข้อให้สมดุล */
     }
 
     .content p {
-        font-size: 1em;  /* ปรับขนาดข้อความให้อ่านง่ายขึ้น */
+        font-size: 1em; /* ลดขนาดข้อความให้อ่านง่าย */
+        line-height: 1.5;
+    }
+
+    .content img.content-image {
+        max-width: 60%; /* ลดขนาดรูปภาพเพื่อไม่ให้ใหญ่เกินไป */
     }
 
     .content .button {
         padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    /* ปรับขนาดตัวเลข 404 */
+    h1 {
+        font-size: 4em;
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+}
+
+/* ปรับขนาดเพิ่มเติมสำหรับมือถือขนาดเล็ก */
+@media (max-width: 480px) {
+    .content h2 {
+        font-size: 1.6em;
+    }
+
+    .content p {
+        font-size: 0.9em;
+    }
+
+    .content img.content-image {
+        max-width: 70%;
+    }
+
+    .content .button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    h1 {
+        font-size: 3.5em;
+    }
+
+    p {
         font-size: 1em;
     }
 }
