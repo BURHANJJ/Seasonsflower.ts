@@ -82,6 +82,33 @@ body, html {
     box-shadow: 0 12px 30px rgba(255, 140, 101, 0.4);
 }
 
+/* ปรับขนาดรูปภาพให้เหมาะสมกับมือถือ */
+.content img.content-image {
+    max-width: 45%;  /* ให้รูปภาพเต็มพื้นที่ของ content */
+    height: auto;
+}
+
+/* ทำให้ content ไม่ใหญ่เกินไปและแสดงสวยในมือถือ */
+@media (max-width: 768px) {
+    .content {
+        max-width: 90%;  /* ปรับความกว้างของกล่อง content ให้พอดี */
+        padding: 20px;  /* ลด padding ลงให้สมดุล */
+    }
+
+    .content h2 {
+        font-size: 2em;  /* ลดขนาดหัวข้อ */
+    }
+
+    .content p {
+        font-size: 1em;  /* ปรับขนาดข้อความให้อ่านง่ายขึ้น */
+    }
+
+    .content .button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
 /* เอฟเฟกต์ดอกไม้และหัวใจตก */
 .falling-element {
     position: fixed;
