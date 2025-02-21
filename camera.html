@@ -125,6 +125,16 @@
             const canvas = document.createElement('canvas');
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
+
+            // ตรวจสอบว่ากล้องถ่ายในแนวตั้งหรือแนวนอน
+            const isPortrait = canvas.width < canvas.height;
+
+            // หากถ่ายในแนวตั้งให้ปรับขนาดให้เป็นขนาดแนวนอน
+            if (isPortrait) {
+                canvas.width = video.videoHeight;
+                canvas.height = video.videoWidth;
+            }
+
             const context = canvas.getContext('2d');
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
