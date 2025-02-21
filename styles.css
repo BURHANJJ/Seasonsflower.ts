@@ -218,3 +218,50 @@ p {
     background-color: #FF8A65;
     transform: translateY(-5px);
 }
+
+
+video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 3px solid #FF8A65;
+}
+
+#photo-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.captured-photo {
+    max-width: 100%;
+    width: 180px;
+    height: auto;
+    border-radius: 10px;
+    margin: 5px;
+    border: 3px solid #FFAB91;
+    box-shadow: 0 4px 10px rgba(255, 140, 101, 0.3);
+}
+
+#countdown-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+    margin-top: 10px;
+}
+
+/* สไตล์ที่คุณมีอยู่ */
+.studio {
+position: fixed;
+top: 20px;
+left: 20px;
+font-size: 2em;
+font-weight: bold;
+color: #000000;
+padding: 10px 20px;
+border-radius: 12px;
+text-transform: uppercase;
+letter-spacing: 2px;
+z-index: 1000;
+text-align: center;
+}
