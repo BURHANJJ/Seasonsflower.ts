@@ -31,13 +31,13 @@
             align-items: center;
             gap: 20px;
             max-width: 90vw;
-            max-height: 70vh;
+            max-height: 60vh;
             overflow: hidden;
         }
 
         .polaroid-container {
-            width: 149px;
-            padding: 10px;
+            width: 120px;
+            padding: 8px;
             border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.8);
         }
@@ -48,7 +48,7 @@
         }
 
         .caption {
-            font-size: 14px;
+            font-size: 12px;
             text-align: center;
             color: #333;
             opacity: 0;
@@ -70,8 +70,8 @@
         }
 
         .color-circle {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             border: 3px solid #ddd;
             cursor: pointer;
@@ -91,7 +91,7 @@
         #controls {
             position: fixed;
             right: 10px;
-            top: 50%;
+            bottom: 20px;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
@@ -99,8 +99,8 @@
         }
 
         #controls button {
-            padding: 12px 20px;
-            font-size: 1em;
+            padding: 10px 18px;
+            font-size: 0.9em;
             font-weight: bold;
             color: white;
             background-color: #444;
@@ -133,7 +133,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: bold;
             color: #000000;
             padding: 10px 20px;
@@ -207,6 +207,7 @@
 
             #controls button {
                 font-size: 0.8em;
+                padding: 8px 12px;
             }
         }
     </style>
@@ -255,7 +256,6 @@
 
             photoContainer.appendChild(polaroidRow);
 
-            // ทำให้ข้อความค่อยๆ ปรากฏหลังจากที่เพิ่มเข้าไป
             setTimeout(() => {
                 caption.style.opacity = 1;
             }, 100);
