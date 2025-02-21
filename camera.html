@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ถ่ายรูป</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/18qwFcX3/image.png">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&family=Noto+Sans+Thai:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* สไตล์ที่คุณมีอยู่ */
+        .studio {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.1s ease-in-out;
+        }
+
+        .captured-photo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        #photo-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- กล้องวีดีโอ -->
+        <video id="video" autoplay></video>
+        <br>
+        <!-- ตัวนับจำนวนรูป -->
+        <h3 id="photo-count">0/4</h3>
+        <h4 id="countdown-text"></h4> <!-- ข้อความนับถอยหลังที่อยู่นอกกล้อง -->
+    </div>
+
+    <div class="studio">
+        <a href="https://www.instagram.com/seasonsflower.luv/" target="_blank" style="text-decoration: none; color: inherit;">
+            SEASONS FLOWER STUDIO
+        </a>
+    </div>
+
+    <div class="copyright">
+        <a href="https://www.instagram.com/seasonsflower.luv/" target="_blank" style="text-decoration: none; color: inherit;">
+            © 2025 Seasonsflower.luv. All rights reserved.
+        </a>
+    </div>
+
+    <!-- เพิ่มไฟล์เสียง -->
+    <audio id="beep-sound" src="beep.mp3"></audio>
+    <audio id="shutter-sound" src="shutter.mp3"></audio>
+
+    <script>
+        const video = document.getElementById('video');
+        const photoCount = document.getElementById('photo-count');
+        const countdownText = document.getElementById('countdown-text');
+        const flashEffect = document.createElement('div');
+        flashEffect.classList.add('flash');
+
+        const beepSound = document.getElementById('beep-sound');
+        const shutterSound = document.getElementById('shutter-sound');
+
+        let captureCount = 0;
+        const maxPhotos = 4;
+        let capturedPhotos = []; // เก็บรูปทั้งหมดที่ถ่าย
+
+        // เปิดกล้อง
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => video.srcObject = stream)
+            .catch(err => console.error("ไม่สามารถเปิดกล้องได้", err));
+
+        // ฟังก์ชันนับถอยหลังและถ่ายภาพ
+        function startCountdown(seconds, callback) {
+            let count = seconds;
+            countdownText.innerText = `${count}`;
+
+            const countdownInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownText.innerText = `${count}`;
+                    beepSound.play();
+                } else {
+                    clearInterval(countdownInterval);
+                    callback();
+                }
+            }, 1000);
+        }
+
+        // ฟังก์ชันถ่ายภาพ
+        function capturePhoto() {
+            if (captureCount >= maxPhotos) {
+                showCapturedPhotos();
+                return;
+            }
+
+            shutterSound.play();
+            document.body.appendChild(flashEffect);
+            setTimeout(() => flashEffect.style.opacity = 1, 0);
+            setTimeout(() => flashEffect.style.opacity = 0, 100);
+
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            capturedPhotos.push(canvas.toDataURL('image/png')); // เก็บรูปที่ถ่ายทั้งหมด
+
+            captureCount++;
+            photoCount.innerText = `${captureCount}/${maxPhotos}`;
+
+            if (captureCount < maxPhotos) {
+                setTimeout(() => startCountdown(5, capturePhoto), 5000);
+            } else {
+                // ถ่ายครบแล้วไปหน้าถัดไปอัตโนมัติ
+                showCapturedPhotos();
+            }
+        }
+
+        // ฟังก์ชันแสดงรูปที่ถ่ายทั้งหมดในหน้าถัดไป
+        function showCapturedPhotos() {
+            // เก็บข้อมูลรูปทั้งหมดใน localStorage
+            localStorage.setItem('capturedPhotos', JSON.stringify(capturedPhotos));
+
+            // ไปที่หน้าใหม่หลังจากถ่ายครบ 4 รูป
+            window.location.href = 'nextPage.html';
+        }
+
+        setTimeout(() => startCountdown(5, capturePhoto), 5000);
+    </script>
+</body>
+</html>
